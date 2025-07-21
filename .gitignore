@@ -2,3 +2,14 @@
 .dump
 .sql
 .DS_Store
+
+# Helm chart dependencies
+charts/*/charts/
+charts/*/Chart.lock
+
+# Chart releaser
+.cr-release-packages/
+.cr-index/
+
+# Test outputs
+test-results/
