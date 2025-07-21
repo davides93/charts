@@ -10,3 +10,6 @@ charts/*/Chart.lock
 # Chart releaser
 .cr-release-packages/
 .cr-index/
+
+# Test outputs
+test-results/

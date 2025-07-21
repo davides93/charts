@@ -1,9 +1,0 @@
-# Configuration for chart-releaser
-owner: davides93
-git-repo: chatwoot-charts
-charts-repo: https://davides93.github.io/chatwoot-charts
-index-path: index.yaml
-package-path: .cr-release-packages
-token: "${CR_TOKEN}"
-generate-release-notes: true
-make-release-latest: true

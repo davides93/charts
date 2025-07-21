@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatwoot Helm Charts</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .logo {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 1rem;
+        }
+        .code-block {
+            background: #f6f8fa;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            padding: 1rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+        }
+        .code-block code {
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #d0d7de;
+            color: #656d76;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img class="logo" src="https://chatwoot-public-assets.s3.amazonaws.com/logo/square.png" alt="Chatwoot Logo">
+        <h1>Chatwoot Helm Charts</h1>
+        <p>Open-source customer engagement suite Helm charts repository</p>
+    </div>
+
+    <h2>Usage</h2>
+    <p>Add this repository to your Helm client:</p>
+    <div class="code-block">
+        <code>helm repo add chatwoot https://davides93.github.io/chatwoot-charts</code>
+    </div>
+
+    <p>Update your local Helm chart repository cache:</p>
+    <div class="code-block">
+        <code>helm repo update</code>
+    </div>
+
+    <p>Install Chatwoot:</p>
+    <div class="code-block">
+        <code>helm install chatwoot chatwoot/chatwoot</code>
+    </div>
+
+    <h2>Available Charts</h2>
+    <ul>
+        <li><strong>chatwoot</strong> - Open-source customer engagement suite</li>
+    </ul>
+
+    <h2>Repository Files</h2>
+    <ul>
+        <li><a href="index.yaml">index.yaml</a> - Helm repository index</li>
+    </ul>
+
+    <h2>Documentation</h2>
+    <p>For detailed configuration options and documentation, visit the 
+    <a href="https://github.com/davides93/chatwoot-charts">GitHub repository</a>.</p>
+
+    <div class="footer">
+        <p>Generated automatically by <a href="https://github.com/helm/chart-releaser">chart-releaser</a></p>
+    </div>
+</body>
+</html>
