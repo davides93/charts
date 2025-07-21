@@ -8,6 +8,7 @@ dependencies:
     name: redis
     repository: https://charts.bitnami.com/bitnami
     version: 16.12.2
+
 name: chatwoot
 description: Open-source customer engagement suite, an alternative to Intercom, Zendesk, Salesforce Service Cloud etc. 🔥💬
 type: application
