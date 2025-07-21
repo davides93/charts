@@ -40,6 +40,7 @@ helm template chatwoot charts/chatwoot/ --values charts/chatwoot/values.yaml
 helm template chatwoot charts/chatwoot/ --set postgresql.enabled=false,redis.enabled=false
 ```
 
+
 ### Chart Dependencies
 ```bash
 # Update dependency locks (when modifying Chart.yaml dependencies)
