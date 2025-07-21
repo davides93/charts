@@ -67,12 +67,23 @@ spec:
                 name: {{ .Values.redis.existingSecret }}
                 key: {{ default "password" .Values.redis.existingSecretKey }}
           {{- end }}
+          {{- with .Values.envVarsExtra }}
+          {{- toYaml . | nindent 10 }}
+          {{- end }}
           envFrom:
             - secretRef:
                 name: {{ template "chatwoot.fullname" . }}-env
           {{- if .Values.existingEnvSecret }}
             - secretRef:
                 name: {{ .Values.existingEnvSecret }}
+          {{- end }}
+          {{- range .Values.envVarsFromConfigMaps }}
+            - configMapRef:
+                name: {{ . }}
+          {{- end }}
+          {{- range .Values.envVarsFromSecrets }}
+            - secretRef:
+                name: {{ . }}
           {{- end }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           name: {{ .Chart.Name }}-web

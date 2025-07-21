@@ -15,6 +15,19 @@ metadata:
     "helm.sh/hook-weight": "-1"
 spec:
   template:
+    metadata:
+      labels:
+        app: {{ template "chatwoot.fullname" . }}
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+        release: "{{ .Release.Name }}"
+        heritage: "{{ .Release.Service }}"
+        {{- with .Values.hooks.migrate.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+      annotations:
+        {{- with .Values.hooks.migrate.podAnnotations }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
@@ -69,12 +82,23 @@ spec:
               name: {{ .Values.redis.auth.existingSecret }}
               key: {{ default "password" .Values.redis.auth.existingSecretPasswordKey }}
         {{- end }}
+        {{- with .Values.envVarsExtra }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
         envFrom:
           - secretRef:
               name: {{ template "chatwoot.fullname" . }}-env
         {{- if .Values.existingEnvSecret }}
           - secretRef:
               name: {{ .Values.existingEnvSecret }}
+        {{- end }}
+        {{- range .Values.envVarsFromConfigMaps }}
+          - configMapRef:
+              name: {{ . }}
+        {{- end }}
+        {{- range .Values.envVarsFromSecrets }}
+          - secretRef:
+              name: {{ . }}
         {{- end }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         volumeMounts:
