@@ -1,0 +1,22 @@
+# Documentation:
+# https://help.github.com/en/articles/workflow-syntax-for-github-actions
+name: Codespell
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  codespell:
+    name: Codespell
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Codespell
+        uses: codespell-project/actions-codespell@master
+        with:
+          ignore_words_list: iam,aks
+          check_filenames: true
+          check_hidden: true
