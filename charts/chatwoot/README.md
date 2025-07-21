@@ -260,7 +260,7 @@ helm upgrade chatwoot chatwoot/chatwoot --version="0.9.0"  -f <your-custom-value
 
 This release changes the postgres and redis versions. This is a breaking change and requires manual data migration if you are not using external postgres and redis.
 
-> **Note**: This release also changes the postgres and redis auth paramaters values under `.Values.redis` and `.Values.postgres`.
+> **Note**: This release also changes the postgres and redis auth parameters values under `.Values.redis` and `.Values.postgres`.
 Make the necessary changes to your custom `values.yaml` file if any.
 `Values.postgresqlDatabase` --> `Values.auth.postgresqlDatabase`
 `Values.postgresqlUsername` --> `Values.auth.postgresqlUsername`
@@ -321,7 +321,7 @@ kubectl cp cw.dump chatwoot-chatwoot-postgresql-0:/tmp/cw.dump
  exit
 ```
 
-8. Restore the database from the backup. If you are seeing no errors, the databse has been restored and you
+8. Restore the database from the backup. If you are seeing no errors, the database has been restored and you
 are good to go.
 ```
  pg_restore --verbose --clean --no-acl --no-owner --create -U postgres -d postgres /tmp/cw.dump
@@ -335,7 +335,7 @@ RAILS_ENV=production bundle exec rails c
 ::Redis::Alfred.delete(::Redis::Alfred::CHATWOOT_INSTALLATION_ONBOARDING)
 ```
 
-10. Load the Chatwoot web url, log in using the old credentials and verify the contents. Voila! Thats it!!
+10. Load the Chatwoot web url, log in using the old credentials and verify the contents. Voila! That's it!!
 
 ### To 0.9.x
 
