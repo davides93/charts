@@ -8,9 +8,13 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
@@ -20,14 +24,23 @@ jobs:
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
 
       - name: Install Helm
-        uses: azure/setup-helm@v1
+        uses: azure/setup-helm@v4
         with:
-          version: v3.4.0
+          version: v3.15.4
 
       - name: Add helm dependencies
         run: |
-          helm repo add bitnami "https://charts.bitnami.com/bitnami" 
+          helm repo add bitnami "https://charts.bitnami.com/bitnami"
+
+      - name: Update chart dependencies
+        run: |
+          find charts/ -name 'Chart.yaml' -exec dirname {} \; | xargs -I {} helm dependency update {}
+
       - name: Run chart-releaser
-        uses: helm/chart-releaser-action@v1.2.1
+        uses: helm/chart-releaser-action@v1.6.0
+        with:
+          charts_dir: charts
+          config: cr.yaml
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          CR_GENERATE_RELEASE_NOTES: true
